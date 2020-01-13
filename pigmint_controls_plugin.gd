@@ -13,7 +13,8 @@ func _enter_tree():
     # Initialization of the plugin goes here
     # Add the new type with a name, a parent type, a script and an icon
     add_custom_type("PigletColorSelect", "TextureButton",
-	                preload("piglet_color_select.gd"), preload("icon.png"))
+                    preload("res://addons/pigmint_controls/buttons/ColorSelect/piglet_color_select.gd"), 
+                    preload("res://addons/pigmint_controls/buttons/ColorSelect/piglet_color_select_icon.png"))
 
 func _exit_tree():
     # Clean-up of the plugin goes here

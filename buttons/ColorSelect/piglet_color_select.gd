@@ -20,7 +20,7 @@ signal colors_reset(piglet_color_select_control)
 #------------------------------------------------------
 
 
-var _g_img_path = "res://addons/pigmint_controls/color_select.png"
+var _g_img_path = "res://addons/pigmint_controls/Buttons/ColorSelect/piglet_color_select.png"
 
 #---------------------- Colors -----------------------
 const BLACK_COLOR            = Color(0,0,0)

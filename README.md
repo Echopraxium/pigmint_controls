@@ -10,10 +10,10 @@ You should have the following: `my_godot_project/addons/pigmint_controls`.
 
 ## Interactions
 Once you add a `PigletColorSelect` to your scene (e.g. as a child of `HBoxContainer` or `VBoxContainer`), this will display a small 24x24 icon which is divided in 4 **parts** thus allowing *4 interactions*:
-1. *Select Foreground color*: a left mouse button click in the small square of the top left part. This will popup a `ColorPicker` which allows the user to select a color.
-2. *Select Background color*: a click in the small square in the bottom right part. This will also popup a `ColorPicker`.
-3. *Switch Foreground/Background colors*: a click on the double arrow in the top right part.
-4. *Reset Foreground/Background colors*: a click on the bottom left part (a tiny white square under a tiny black square).
+1. **Select Foreground color**: a left mouse button click in the small square of the top left part. This will popup a `ColorPicker` which allows the user to select a color.
+2. **Select Background color**: a click in the small square in the bottom right part. This will also popup a `ColorPicker`.
+3. **Switch Foreground/Background colors**: a click on the double arrow in the top right part.
+4. **Reset Foreground/Background colors**: a click on the bottom left part (a tiny white square under a tiny black square).
 
 ## Events
 There are 4 custom signals which can be connected to your nodes to handle the *4 interactions*:

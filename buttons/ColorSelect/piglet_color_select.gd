@@ -100,7 +100,6 @@ func _enter_tree():
     connect("pressed", self, "_clicked")
     _g_color_chooser_dialog = ColorPicker.new()
     _g_color_chooser_dialog.connect("gui_input", self, "_on_Color_select_dialog_gui_input")
-    set_reset_colors(BLACK_COLOR, WHITE_COLOR)
 
 
 func _on_Color_select_dialog_gui_input(event):
@@ -126,7 +125,7 @@ func set_foreground_color(color):
 func get_foreground_color():
 	return _g_foreground_color
 #---------------------------------------------------
-	
+
 
 #---------- BackgroundColor getter/setter ----------
 func set_background_color(color):
@@ -136,12 +135,6 @@ func get_background_color():
     return _g_background_color
 #---------------------------------------------------
 
-
-#-------------- Reset Colors setter ----------------
-func set_reset_colors(reset_fg_color, reset_bg_color):
-     _g_reset_foreground_color = reset_fg_color
-     _g_reset_background_color = reset_bg_color
-#---------------------------------------------------
 
 
 func _clicked():

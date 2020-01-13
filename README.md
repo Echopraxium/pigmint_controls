@@ -25,8 +25,12 @@ There are 4 custom signals which can be connected to your nodes to handle the *4
 ## Properties
 There are 2 properties on `PigletColorSelect`. They can be accessed with setters and getters:
 1. `ForegroundColor`
-	func set_foreground_color(color):
-	func get_foreground_color():
+```
+	set_foreground_color(color)
+	get_foreground_color()
+```
 2. `BackgroundColor`	
-	func set_background_color(color)
-	func get_background_color()
+```
+	set_background_color(color)
+	get_background_color()
+```

@@ -3,7 +3,7 @@
 #---------------------------------------------------------------------------------
 # Description: Script for "Pigmint Controls" Plugin for Godot 3
 # Author:      Echopraxium (aka Michel Kern) 2020
-# Version:     0.0.1 (2020/01/09) AAAA/MM/DD
+# Version:     0.0.18 (2020/01/09) AAAA/MM/DD
 #=================================================================================
 # https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
 tool

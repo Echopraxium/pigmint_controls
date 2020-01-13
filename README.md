@@ -9,7 +9,7 @@ It provides a mean for the user to select Foreground/Background colors.
 2. Use Godot's FileSystem panel to create a **addons** folder at the root of your *Godot* project. 
 3. Install **pigmint_controls** with the **AssetLib** button (top center of Godot main window): select the zip then `Import`, `Open` and `Install`
 4. The `pigmint_controls` is at the same level than `addons` in the project folders hierarchy, you must move it under `addons` with a drag and drop. You should have the following: `my_godot_project/addons/pigmint_controls`.
-5. Check that the plugin is known by Godot: use the **AssetLib** button then `Plugins` and check that it *Active* (else activate it with the ComboList button in the `Status` column).
+5. Check that the plugin is known by Godot: use the **AssetLib** button then `Plugins` and check that it is *Active* (else activate it with the ComboList button in the `Status` column).
 
 ## Interactions
 Once you add a `PigletColorSelect` to your scene (e.g. as a child of `HBoxContainer` or `VBoxContainer`), this will display a small 24x24 icon which is divided in 4 **parts** thus allowing *4 interactions*:

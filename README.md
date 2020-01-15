@@ -21,8 +21,8 @@ This plugin currently provides 2 custom "ColorSelect" controls meant to let the 
 2. Create a container (e.g. a HBoxContainer` or `VBoxContainer`) as a child of the 2D scene.
 3. Select this container then use the right mouse button (to open the context menu) and select `Add Child Node`
 4. In the `Search` field, input `Pig` to find more quickly the `PigletColorSelect` or `PigColorSelect` custom controls.
-    - ![PigletColorSelect](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/piglet_color_select_icon.png)
-    - ![PigColorSelect](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/pig_color_select_icon.png)
+    - PigletColorSelect: ![](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/piglet_color_select_icon.png)
+    - PigColorSelect: ![](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/pig_color_select_icon.png)
 5. Select one of these `ColorSelect` control and then `Create`
 
 ## Interactions

@@ -18,14 +18,15 @@ This plugin currently provides 2 custom "ColorSelect" controls meant to let the 
 
 ## How to use a PigletColorSelect
 1. Create a 2D scene in your *Godot* project.
-2. Create a container (e.g. a `HBoxContainer` or `VBoxContainer`) as a child of the 2D scene.
+2. Create a container (e.g. a HBoxContainer` or `VBoxContainer`) as a child of the 2D scene.
 3. Select this container then use the right mouse button (to open the context menu) and select `Add Child Node`
-4. In the `Search` field, input `Pig` to find more quickly the `PigletColorSelect` or `PigColorSelect` custom controls. Select it and then `Create`
-  ![PigletColorSelect](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/piglet_color_select_icon.png)
-  ![PigColorSelect](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/pig_color_select_icon.png)
+4. In the `Search` field, input `Pig` to find more quickly the `PigletColorSelect` or `PigColorSelect` custom controls.
+    - ![PigletColorSelect](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/piglet_color_select_icon.png)
+    - ![PigColorSelect](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/pig_color_select_icon.png)
+5. Select one of these `ColorSelect` control and then `Create`
 
 ## Interactions
-Once you have a `PigletColorSelect`/`PigColorSelect` in your scene you will see a button with a custom icon (24x24 pixels). This button has in fact 4 selectable **parts** each one for a specific *interaction*:
+Once you have a `PigletColorSelect`/`PigColorSelect` in your scene you will see a button with a custom icon. This button has in fact 4 selectable **parts** each one for a specific *interaction*:
 1. **Select Foreground color**: a left mouse button click in the small square of the top left part. This will popup a `ColorPicker` which allows the user to select a color.
 2. **Select Background color**: a click in the small square of the bottom right part. This will also popup a `ColorPicker`.
 3. **Switch Foreground/Background colors**: a click on the double arrow in the top right part.

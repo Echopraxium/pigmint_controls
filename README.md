@@ -1,8 +1,12 @@
 # PigMint Controls
-A plugin which provides custom controls (mainly for drawing apps) for [Godot Engine](https://godotengine.org/). In this first release, there **PigletColorSelect**, it's a Color Picker button. 
-It provides a mean for the user to select Foreground/Background colors.
+A plugin which provides custom controls (mainly for drawing apps) for [Godot Engine](https://godotengine.org/). 
+This plugin currently provides 2 custom "ColorSelect" controls meant to let the user select Foreground/Background colors
+1. **PigletColorSelect**: this one has a 24x24 pixels icon
+  ![](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/piglet_color_select.png)
+2. **PigColorSelect**: this one has a 32x32 pixels icon
+  ![](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/pig_color_select.png)
 
-![PigMint Controls](./buttons/ColorSelect/Piglet_Color_Select_Screenshot.png)
+![PigMint Controls](./buttons/ColorSelect/PigMint_Color_Select_Screenshot.png)
 
 ## How to install the Plugin?
 1. Download as a zip file from github. You should get a file named `pigmint_controls-master.zip`
@@ -16,10 +20,12 @@ It provides a mean for the user to select Foreground/Background colors.
 1. Create a 2D scene in your *Godot* project.
 2. Create a container (e.g. a `HBoxContainer` or `VBoxContainer`) as a child of the 2D scene.
 3. Select this container then use the right mouse button (to open the context menu) and select `Add Child Node`
-4. In the `Search` field, input `Pig` to find more quickly the `PigletColorSelect` node. Select it and then `Create`
+4. In the `Search` field, input `Pig` to find more quickly the `PigletColorSelect` or `PigColorSelect` custom controls. Select it and then `Create`
+  ![PigletColorSelect](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/piglet_color_select_icon.png)
+  ![PigColorSelect](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/pig_color_select_icon.png)
 
 ## Interactions
-Once you have a `PigletColorSelect` in your scene you will see a button with a custom icon (24x24 pixels). This button has in fact 4 selectable **parts** each one for a specific *interaction*:
+Once you have a `PigletColorSelect`/`PigColorSelect` in your scene you will see a button with a custom icon (24x24 pixels). This button has in fact 4 selectable **parts** each one for a specific *interaction*:
 1. **Select Foreground color**: a left mouse button click in the small square of the top left part. This will popup a `ColorPicker` which allows the user to select a color.
 2. **Select Background color**: a click in the small square of the bottom right part. This will also popup a `ColorPicker`.
 3. **Switch Foreground/Background colors**: a click on the double arrow in the top right part.
@@ -29,11 +35,11 @@ Once you have a `PigletColorSelect` in your scene you will see a button with a c
 There are 4 custom signals which can be connected to handle each of the possible *interactions*
 1. `foreground_color_changed(fg_color)`: the connected function will receive the *Foreground color* when it has been changed by the user.
 2. `background_color_changed(bg_color)`: the connected function will receive the *Background color* when it has been changed by the user.
-3. `colors_switch(piglet_color_select_control)`: the connected function will receive the `PigletColorSelect` button when the user *Switches* colors.
-4. `colors_reset(piglet_color_select_control)`: the connected function will receive the `PigletColorSelect` button when the user *Resets* colors.
+3. `colors_switch(color_select_control)`: the connected function will receive the `color_select` control when the user *Switches* colors.
+4. `colors_reset(color_select_control)`: the connected function will receive the `color_select` control when the user *Resets* colors.
 
 ## Properties
-There are 2 properties on `PigletColorSelect`. They can be accessed with setters and getters:
+There are 2 properties on `PigletColorSelect`/`PigColorSelect`. They can be accessed with setters and getters:
 1. `ForegroundColor`
 ```
 	set_foreground_color(color)

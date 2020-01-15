@@ -5,23 +5,21 @@
 # Project:     "Pigmint Controls", a custom controls Plugin for Godot 3
 #              https://github.com/Echopraxium/pigmint_controls
 # Author:      Echopraxium 2020
-# Version:     0.0.20 (2020/01/14) AAAA/MM/DD
+# Version:     0.0.21 (2020/01/15) AAAA/MM/DD
 #=================================================================================
 # https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
 # http://www.alexhoratio.co.uk/2018/08/godot-complete-guide-to-control-nodes.html
 tool
 extends TextureButton
 
-const PLUGIN_NAME = "PigMint Controls"
-
 #------------------ Custom Signals --------------------
 signal foreground_color_changed(fg_color)
 signal background_color_changed(bg_color)
-signal colors_switch(piglet_color_select_control)
-signal colors_reset(piglet_color_select_control)
+signal colors_switch(color_select_control)
+signal colors_reset(color_select_control)
 #------------------------------------------------------
 
-var _g_img_path = "res://addons/pigmint_controls/Buttons/ColorSelect/piglet_color_select.png"
+var _g_icon_path = _getIconPath()
 
 #----------------- PredefinedColors ------------------
 const PredefinedColors =  {
@@ -41,21 +39,19 @@ const PredefinedColors =  {
 
 
 #---------- Button parts: position and size ----------
-const FG_BG_PART_SIZE        = 9
-const BG_PART_START          = 14
-
-const SWITCH_PART_START_X    = 12
-const SWITCH_PART_START_Y    = 2
-const SWITCH_PART_SIZE       = 10
-
-const RESET_PART_START_X     = 0
-const RESET_PART_START_Y     = 14
-const RESET_PART_SIZE        = 10
+var   FG_BG_PART_SIZE        = _getColorPartSize()
+var   BG_PART_POSITION       = _getBackgroundColorPosition()
+var   SWITCH_PART_POSITION   = _getSwitchPartPosition()
+var   SWITCH_PART_SIZE       = _getSwitchPartSize()
+var   RESET_PART_POSITION    = _getResetPartPosition()
+var   RESET_PART_SIZE        = _getResetPartSize()
 #-----------------------------------------------------
 
 
 #------------------ Button parts ---------------------
-enum ButtonPart { FOREGROUND, BACKGROUND, SWITCH, RESET, NONE=-1}
+enum ButtonPart { 
+    FOREGROUND, BACKGROUND, SWITCH, RESET, NONE=-1
+}
 #-----------------------------------------------------
 
 var _g_clicked_part           = ButtonPart.NONE
@@ -76,7 +72,7 @@ var _g_normal_texture = null
 var ORIGIN      = Vector2(0,0)
 var BUTTON_SIZE = Vector2(FG_BG_PART_SIZE, FG_BG_PART_SIZE)
 
-"""
+""" 24x24 PigletColorSelect icon
 +---------+.............
 |$$$$$$$$$|.............
 |$$$$$$$$$|...X......... 
@@ -104,7 +100,17 @@ var BUTTON_SIZE = Vector2(FG_BG_PART_SIZE, FG_BG_PART_SIZE)
 """
 
 func _enter_tree():
-    _set_button_icon()
+    _g_icon_path = _getIconPath()
+	
+    FG_BG_PART_SIZE        = _getColorPartSize()
+    BG_PART_POSITION       = _getBackgroundColorPosition()
+    SWITCH_PART_POSITION   = _getSwitchPartPosition()
+    SWITCH_PART_SIZE       = _getSwitchPartSize()
+    RESET_PART_POSITION    = _getResetPartPosition()
+    RESET_PART_SIZE        = _getResetPartSize()
+
+    BUTTON_SIZE = Vector2(FG_BG_PART_SIZE, FG_BG_PART_SIZE)
+    _set_icon()
     connect("pressed", self, "_clicked")
     _g_color_chooser_dialog = ColorPicker.new()
     _g_color_chooser_dialog.connect("gui_input", self, "_on_Color_select_dialog_gui_input")
@@ -141,23 +147,50 @@ func get_foreground_color():
 
 #---------- BackgroundColor getter/setter ----------
 func set_background_color(color):
-    _g_background_color = color
+    return _g_foreground_color
 	
 func get_background_color():
     return _g_background_color
 #---------------------------------------------------
 
 
-# virtual: allows to choose an alternative ColorPicker dialog 
+#-------------------------------------------------------------------------------------------
+#----- These virtual functions allow to redefine part's position and size in subclasses ----
+#-------------------------------------------------------------------------------------------
+func _getIconPath():
+    return "res://addons/pigmint_controls/Buttons/ColorSelect/piglet_color_select.png"
+
+# allows to choose an alternative ColorPicker dialog 
 func _getColorPickerDialog():
     return _g_color_chooser_dialog
 	
-
-# virtual: allows to get picked color when an alternative ColorPicker dialog is used
+# allows to get picked color when an alternative ColorPicker dialog is used
 func _getPickedColor():
     return _g_color_chooser_dialog.get_pick_color()
+	
+func _getColorPartSize():
+    return 9
 
+func _getResetPartSize():
+    return 10
+	
+func _getSwitchPartPosition():
+    return Vector2(12,2)
+	
+func _getBackgroundColorPosition():
+    return Vector2(14,14)
+	
+func _getResetPartPosition():
+    return Vector2(1,15)
+	
+func _getSwitchPartSize():
+    return 10
+#----- These virtual functions allow to redefine part's position and size in subclasses
+	
 
+#----------------------------------------------------
+#------------   _definePresetColors()    ------------
+#----------------------------------------------------
 func _definePresetColors():
      _g_color_chooser_dialog.add_preset(PredefinedColors.WHITE)
      _g_color_chooser_dialog.add_preset(PredefinedColors.RED)
@@ -180,7 +213,7 @@ func _clicked():
     var node_rect = get_global_rect()
 	
     #print("node x: " + str(node_rect.position.x) + " y:" + str(node_rect.position.y))
-    var mouseXY = self.get_viewport().get_mouse_position()
+    var mouseXY = get_viewport().get_mouse_position()
     #print("mouseXY x: " + str(mouseXY.x) + " y:" + str(mouseXY.y))
 	
     var request_color_from_user = false
@@ -257,8 +290,8 @@ func _draw():
     #---------------------------------------------
 
     #---------- Paint "BACKGROUND" part ----------
-    x = rect.origin.x + BG_PART_START
-    y = rect.origin.y + BG_PART_START
+    x = rect.origin.x + BG_PART_POSITION.x
+    y = rect.origin.y + BG_PART_POSITION.y
     var background_rect = Rect2(Vector2(x, y), BUTTON_SIZE)
     draw_rect(background_rect, _g_background_color)
     #---------------------------------------------
@@ -303,8 +336,8 @@ func _detect_clicked_part(rect, mouseXY):
 
 
 	#---------- Check if mouse is inside "BACKGROUND PART" ----------
-    start_part.x = BG_PART_START
-    start_part.y = BG_PART_START
+    start_part.x = BG_PART_POSITION.x
+    start_part.y = BG_PART_POSITION.y
     end_part.x   = start_part.x + FG_BG_PART_SIZE
     end_part.y   = start_part.y + FG_BG_PART_SIZE
     if (     (x > start_part.x  and  x < end_part.x)
@@ -314,8 +347,8 @@ func _detect_clicked_part(rect, mouseXY):
 
 
 	#---------- Check if mouse is inside "SWITCH PART" ----------
-    start_part.x = SWITCH_PART_START_X
-    start_part.y = SWITCH_PART_START_Y
+    start_part.x = SWITCH_PART_POSITION.x
+    start_part.y = SWITCH_PART_POSITION.y
     end_part.x   = start_part.x + SWITCH_PART_SIZE
     end_part.y   = start_part.y + SWITCH_PART_SIZE
     if (     (x > start_part.x  and  x < end_part.x)
@@ -325,8 +358,8 @@ func _detect_clicked_part(rect, mouseXY):
 	
 	
 	#---------- Check if mouse is inside "RESET PART" ----------
-    start_part.x = RESET_PART_START_X
-    start_part.y = RESET_PART_START_Y
+    start_part.x = RESET_PART_POSITION.x
+    start_part.y = RESET_PART_POSITION.y
     end_part.x   = start_part.x + RESET_PART_SIZE
     end_part.y   = start_part.y + RESET_PART_SIZE
     if (     (x > start_part.x  and  x < end_part.x)
@@ -339,12 +372,12 @@ func _detect_clicked_part(rect, mouseXY):
 
 
 #----------------------------------------------------
-#-------------    _set_button_icon()    -------------
+#-------------       _set_icon()        -------------
 #----------------------------------------------------
 # Error: "Error: Loaded resource as image file, this will not work on export"
 # https://godotengine.org/qa/43318/error-loaded-resource-as-image-file-this-will-not-work-export
-func _set_button_icon():	
+func _set_icon():	
     # Set "Normal" Button Texture
-    _g_normal_texture = load(_g_img_path)
+    _g_normal_texture = load(_g_icon_path)
     set_normal_texture(_g_normal_texture)
-#----- _set_button_icon()
+#----- _set_icon()

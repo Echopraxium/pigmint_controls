@@ -1,9 +1,11 @@
 #=================================================================================
 # pigmint_controls_plugin.gd
 #---------------------------------------------------------------------------------
-# Description: Script for "Pigmint Controls" Plugin for Godot 3
-# Author:      Echopraxium (aka Michel Kern) 2020
-# Version:     0.0.18 (2020/01/09) AAAA/MM/DD
+# Description: Plugin Script
+# Project:     "Pigmint Controls", a custom controls Plugin for Godot 3
+#              https://github.com/Echopraxium/pigmint_controls
+# Author:      Echopraxium 2020
+# Version:     0.0.20 (2020/01/14) AAAA/MM/DD
 #=================================================================================
 # https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
 tool
